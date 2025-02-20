@@ -35,7 +35,7 @@ const Home = () => {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="bg-butcher-600 text-white px-8 py-3 rounded-full text-lg hover:bg-butcher-700 transition-colors inline-flex items-center gap-2 group shadow-lg shadow-butcher-600/20"
+                className="bg-butcher-600 text-gray-800 px-8 py-3 rounded-full text-lg hover:bg-butcher-700 transition-colors inline-flex items-center gap-2 group shadow-lg shadow-butcher-600/20"
               >
                 View Our Selection
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

@@ -113,7 +113,7 @@ const Products = () => {
               onClick={() => setSelectedCategory(category)}
               className={`px-6 py-2 rounded-full font-medium transition-all ${
                 selectedCategory === category
-                  ? "bg-butcher-600 text-white shadow-lg shadow-butcher-600/20"
+                  ? "bg-butcher-600 text-gray-800 shadow-lg shadow-butcher-600/20"
                   : "bg-white text-gray-800 hover:bg-butcher-50 hover:text-butcher-600 border border-gray-200"
               }`}
             >
