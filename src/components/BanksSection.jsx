@@ -65,27 +65,43 @@ const banks = [
   },
 ]
 
-
-
 const BanksSection = () => {
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="pt-16 pb-32 bg-gradient-to-b from-white via-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl md:text-4xl font-serif mb-4">Métodos de Pago Aceptados</h2>
-          <p className="text-gray-600">Trabajamos con todos los principales bancos argentinos</p>
-        </motion.div>
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-butcher-600 font-medium text-lg block mb-4"
+          >
+            Medios de Pago
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl lg:text-5xl font-serif text-gray-900 mb-6"
+          >
+            Trabajamos con los Principales Bancos
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-xl text-gray-600"
+          >
+            Aceptamos todas las tarjetas de crédito y débito de los bancos más importantes del país
+          </motion.p>
+        </div>
 
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8"
         >
           {banks.map((bank, index) => (
             <motion.div
@@ -94,13 +110,15 @@ const BanksSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className={`bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-shadow ${bank.bgColor}`}
+              className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300
+              p-6 flex items-center justify-center"
             >
-              <div className="aspect-[3/2] relative">
+              <div className="relative w-full aspect-[3/2]">
                 <img
-                  src={bank.logo || "/placeholder.svg"}
+                  src={bank.logo}
                   alt={bank.name}
-                  className="absolute inset-0 w-full h-full object-contain p-2"
+                  className="absolute inset-0 w-full h-full object-contain 
+                  transition-transform duration-300 group-hover:scale-110"
                 />
               </div>
             </motion.div>

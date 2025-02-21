@@ -10,35 +10,44 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const location = useLocation()
+  const isHomePage = location.pathname === "/"
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
+      // Check if we're past the hero section (assuming hero height is 100vh)
+      setIsScrolled(window.scrollY > window.innerHeight - 80)
     }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+
+    if (isHomePage) {
+      window.addEventListener("scroll", handleScroll)
+      return () => window.removeEventListener("scroll", handleScroll)
+    } else {
+      setIsScrolled(true)
+    }
+  }, [isHomePage])
 
   const navbarVariants = {
-    top: {
-      background: "rgba(255, 255, 255, 0.95)",
-      backdropFilter: "blur(8px)",
-      boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
+    transparent: {
+      background: "rgba(255, 255, 255, 0)",
+      backdropFilter: "none",
+      boxShadow: "none",
+      borderBottom: "none",
     },
-    scrolled: {
+    solid: {
       background: "rgba(255, 255, 255, 0.98)",
       backdropFilter: "blur(12px)",
       boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
+      borderBottom: "1px solid rgba(229, 231, 235, 1)",
     },
   }
 
   return (
     <motion.nav
-      initial="top"
-      animate={isScrolled ? "scrolled" : "top"}
+      initial="transparent"
+      animate={isScrolled || !isHomePage ? "solid" : "transparent"}
       variants={navbarVariants}
       transition={{ duration: 0.4 }}
-      className="fixed w-full z-50 border-b border-gray-200"
+      className="fixed w-full z-50"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
@@ -47,21 +56,33 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 300 }}
-              src="./Logo.jpg"
+              src={isScrolled || !isHomePage ? "./Logo5.jpg" : "./Logo4.jpg"}
               alt="Almacén de Carnes"
-              className="h-14 w-auto rounded-xl transition-all duration-300"
+              className="h-14 w-auto transition-all duration-300"
             />
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-2">
-            <NavLink to="/" isActive={location.pathname === "/"}>
+            <NavLink 
+              to="/" 
+              isActive={location.pathname === "/"} 
+              isTransparent={!isScrolled && isHomePage}
+            >
               Inicio
             </NavLink>
-            <NavLink to="/products" isActive={location.pathname === "/products"}>
+            <NavLink 
+              to="/products" 
+              isActive={location.pathname === "/products"}
+              isTransparent={!isScrolled && isHomePage}
+            >
               Productos
             </NavLink>
-            <NavLink to="/contact" isActive={location.pathname === "/contact"}>
+            <NavLink 
+              to="/contact" 
+              isActive={location.pathname === "/contact"}
+              isTransparent={!isScrolled && isHomePage}
+            >
               Contacto
             </NavLink>
           </div>
@@ -144,20 +165,26 @@ const Navbar = () => {
   )
 }
 
-const NavLink = ({ to, isActive, children }) => (
+const NavLink = ({ to, isActive, isTransparent, children }) => (
   <Link
     to={to}
     className="relative group px-6 py-3 rounded-xl"
   >
     <span className={`text-base font-medium transition-all duration-300 ${
       isActive 
-        ? "text-butcher-600" 
-        : "text-gray-700 group-hover:text-butcher-600"
+        ? isTransparent 
+          ? "text-butcher-600" 
+          : "text-butcher-600"
+        : isTransparent
+          ? "text-white group-hover:text-butcher-400"
+          : "text-gray-700 group-hover:text-butcher-600"
     }`}>
       {children}
     </span>
     <motion.div
-      className="absolute bottom-0 left-0 right-0 h-1 bg-butcher-600 rounded-full"
+      className={`absolute bottom-0 left-0 right-0 h-1 rounded-full ${
+        isTransparent ? "bg-butcher-400" : "bg-butcher-600"
+      }`}
       initial={false}
       animate={{
         opacity: isActive ? 1 : 0,

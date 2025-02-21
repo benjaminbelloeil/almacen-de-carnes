@@ -91,127 +91,133 @@ const Home = () => {
       {/* Featured Products Section */}
       <section className="py-32 bg-gradient-to-b from-white via-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <motion.span
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-butcher-600 font-medium text-lg mb-4 block"
-            >
-              Nuestra Selección
-            </motion.span>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-5xl font-serif text-gray-900 mb-6"
-            >
-              Cortes Destacados
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-xl text-gray-600 max-w-2xl mx-auto"
-            >
-              Descubre nuestra selección de los cortes más exclusivos, 
-              cuidadosamente elegidos para garantizar la máxima calidad
-            </motion.p>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-16"
-          >
-            {/* Featured Product 1 */}
-            <motion.div
-              whileHover={{ y: -12, scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="group relative overflow-hidden rounded-3xl shadow-xl"
-            >
-              <div className="aspect-w-4 aspect-h-5">
-                <img
-                  src="https://images.unsplash.com/photo-1615937722923-67f6deaf2cc9?auto=format&fit=crop&w=800&q=80"
-                  alt="Costillar Premium"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                <span className="text-butcher-400 font-medium mb-2 block">Premium</span>
-                <h3 className="text-3xl font-serif mb-3">Costillar Premium</h3>
-                <p className="text-gray-200 mb-4 text-lg opacity-90">El corte perfecto para cada ocasión</p>
-                <p className="font-serif text-2xl text-butcher-400">$29.99/kg</p>
-              </div>
-            </motion.div>
-
-            {/* Featured Product 2 */}
-            <motion.div
-              whileHover={{ y: -12, scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="group relative overflow-hidden rounded-3xl shadow-xl"
-            >
-              <div className="aspect-w-4 aspect-h-5">
-                <img
-                  src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
-                  alt="Bife de Chorizo"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                <span className="text-butcher-400 font-medium mb-2 block">Destacado</span>
-                <h3 className="text-3xl font-serif mb-3">Bife de Chorizo</h3>
-                <p className="text-gray-200 mb-4 text-lg opacity-90">Sabor y terneza incomparables</p>
-                <p className="font-serif text-2xl text-butcher-400">$27.99/kg</p>
-              </div>
-            </motion.div>
-
-            {/* Featured Product 3 */}
-            <motion.div
-              whileHover={{ y: -12, scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="group relative overflow-hidden rounded-3xl shadow-xl"
-            >
-              <div className="aspect-w-4 aspect-h-5">
-                <img
-                  src="https://images.unsplash.com/photo-1603048297172-c92544798d5a?auto=format&fit=crop&w=800&q=80"
-                  alt="Lomo Fino"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                <span className="text-butcher-400 font-medium mb-2 block">Exclusivo</span>
-                <h3 className="text-3xl font-serif mb-3">Lomo Fino</h3>
-                <p className="text-gray-200 mb-4 text-lg opacity-90">La máxima expresión de calidad</p>
-                <p className="font-serif text-2xl text-butcher-400">$34.99/kg</p>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="text-center"
-          >
-            <Link to="/products">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-butcher-600 text-gray-900 px-10 py-5 rounded-full text-xl font-medium inline-flex items-center gap-3 group hover:bg-butcher-700 transition-all duration-300 shadow-lg shadow-butcher-600/20"
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            {/* Left Column - Information */}
+            <div className="lg:pr-12 lg:sticky lg:top-8 self-start">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="space-y-8"
               >
-                Explorar Catálogo Completo
-                <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-              </motion.button>
-            </Link>
-          </motion.div>
+                <span className="text-butcher-600 font-medium text-lg">Nuestra Selección</span>
+                <h2 className="text-4xl lg:text-5xl font-serif text-gray-900 leading-tight">
+                  La Mejor Carne Argentina en San Nicolás
+                </h2>
+                <p className="text-xl text-gray-600 leading-relaxed">
+                  En nuestro almacén, cada corte cuenta una historia de tradición y excelencia. 
+                  Seleccionamos cuidadosamente las mejores piezas para ofrecerte una experiencia 
+                  gastronómica única.
+                </p>
+                <div className="space-y-6 text-gray-600">
+                  <h3 className="text-2xl font-serif text-gray-900">Nuestros Cortes Incluyen:</h3>
+                  <ul className="space-y-4">
+                    <li className="flex items-start gap-4">
+                      <span className="w-2 h-2 bg-butcher-600 rounded-full mt-2"/>
+                      <span>
+                        <strong className="block text-gray-900">Cortes de Res Premium</strong>
+                        Bife de chorizo, lomo, entraña y costilla, preparados según la tradición argentina
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <span className="w-2 h-2 bg-butcher-600 rounded-full mt-2"/>
+                      <span>
+                        <strong className="block text-gray-900">Selección de Cerdo</strong>
+                        Pechito, bondiola y costillas, con nuestro toque especial
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <span className="w-2 h-2 bg-butcher-600 rounded-full mt-2"/>
+                      <span>
+                        <strong className="block text-gray-900">Aves Seleccionadas</strong>
+                        Pollo fresco y otras aves de primera calidad
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+
+                <Link to="/products" className="inline-block mt-8">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-butcher-600 text-white px-10 py-4 rounded-full text-lg font-medium 
+                    inline-flex items-center gap-3 group hover:bg-butcher-700 transition-all duration-300"
+                  >
+                    Explorar Todos los Cortes
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </motion.button>
+                </Link>
+              </motion.div>
+            </div>
+
+            {/* Right Column - Stacked Images */}
+            <div className="space-y-6">
+              {/* Cortes de Res */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="group relative overflow-hidden rounded-3xl shadow-xl"
+              >
+                <div className="aspect-w-16 aspect-h-9">
+                  <img
+                    src="https://images.unsplash.com/photo-1615937722923-67f6deaf2cc9?auto=format&fit=crop&w=1200&q=80"
+                    alt="Cortes de Res"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent" />
+                  <div className="absolute bottom-0 left-0 p-8">
+                    <h3 className="text-3xl font-serif text-white mb-2">Cortes de Res</h3>
+                    <span className="text-butcher-400 font-medium">Premium Selection</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Cortes de Cerdo */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="group relative overflow-hidden rounded-3xl shadow-xl"
+              >
+                <div className="aspect-w-16 aspect-h-9">
+                  <img
+                    src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80"
+                    alt="Cortes de Cerdo"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent" />
+                  <div className="absolute bottom-0 left-0 p-8">
+                    <h3 className="text-3xl font-serif text-white mb-2">Cortes de Cerdo</h3>
+                    <span className="text-butcher-400 font-medium">Selección Especial</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Aves */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                className="group relative overflow-hidden rounded-3xl shadow-xl"
+              >
+                <div className="aspect-w-16 aspect-h-9">
+                  <img
+                    src="https://images.unsplash.com/photo-1587593810167-a84920ea0781?auto=format&fit=crop&w=1200&q=80"
+                    alt="Aves"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent" />
+                  <div className="absolute bottom-0 left-0 p-8">
+                    <h3 className="text-3xl font-serif text-white mb-2">Aves</h3>
+                    <span className="text-butcher-400 font-medium">Frescura Garantizada</span>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
