@@ -9,16 +9,13 @@ import About from "./About"
 import Footer from "./Footer"
 
 
-
-
-
 const Home = () => {
 
   useEffect(() => {
     document.body.classList.add("home")
     return () => document.body.classList.remove("home")
   }, [])
-  
+
   return (
     // Wrap everything in a container with safe area insets and black background
     <div
@@ -191,7 +188,7 @@ const Home = () => {
             </div>
 
             {/* Right Column - Stacked Images */}
-            <div className="space-y-6">
+            <div className="space-y-4"> {/* Reduced space between images */}
               {/* Cortes de Res */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
@@ -199,15 +196,15 @@ const Home = () => {
                 viewport={{ once: true }}
                 className="group relative overflow-hidden rounded-3xl shadow-xl"
               >
-                <div className="aspect-w-16 aspect-h-9">
+                <div className="aspect-w-16 aspect-h-7"> {/* Reduced image height */}
                   <img
                     src="https://images.unsplash.com/photo-1615937722923-67f6deaf2cc9?auto=format&fit=crop&w=1200&q=80"
                     alt="Cortes de Res"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent" />
-                  <div className="absolute bottom-0 left-0 p-8">
-                    <h3 className="text-3xl font-serif text-white mb-2">Cortes de Res</h3>
+                  <div className="absolute bottom-0 left-0 p-6"> {/* Reduced padding */}
+                    <h3 className="text-2xl font-serif text-white mb-1">Cortes de Res</h3> {/* Reduced text size and margin */}
                     <span className="text-butcher-400 font-medium">Premium Selection</span>
                   </div>
                 </div>
@@ -221,15 +218,15 @@ const Home = () => {
                 transition={{ delay: 0.2 }}
                 className="group relative overflow-hidden rounded-3xl shadow-xl"
               >
-                <div className="aspect-w-16 aspect-h-9">
+                <div className="aspect-w-16 aspect-h-7"> {/* Reduced image height */}
                   <img
                     src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80"
                     alt="Cortes de Cerdo"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent" />
-                  <div className="absolute bottom-0 left-0 p-8">
-                    <h3 className="text-3xl font-serif text-white mb-2">Cortes de Cerdo</h3>
+                  <div className="absolute bottom-0 left-0 p-6"> {/* Reduced padding */}
+                    <h3 className="text-2xl font-serif text-white mb-1">Cortes de Cerdo</h3> {/* Reduced text size and margin */}
                     <span className="text-butcher-400 font-medium">Selección Especial</span>
                   </div>
                 </div>
@@ -243,15 +240,15 @@ const Home = () => {
                 transition={{ delay: 0.4 }}
                 className="group relative overflow-hidden rounded-3xl shadow-xl"
               >
-                <div className="aspect-w-16 aspect-h-9">
+                <div className="aspect-w-16 aspect-h-7"> {/* Reduced image height */}
                   <img
                     src="https://images.unsplash.com/photo-1587593810167-a84920ea0781?auto=format&fit=crop&w=1200&q=80"
                     alt="Aves"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent" />
-                  <div className="absolute bottom-0 left-0 p-8">
-                    <h3 className="text-3xl font-serif text-white mb-2">Aves</h3>
+                  <div className="absolute bottom-0 left-0 p-6"> {/* Reduced padding */}
+                    <h3 className="text-2xl font-serif text-white mb-1">Aves</h3> {/* Reduced text size and margin */}
                     <span className="text-butcher-400 font-medium">Frescura Garantizada</span>
                   </div>
                 </div>

@@ -4,7 +4,7 @@
 import { useState, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Home, Store, Phone } from "lucide-react" // Added icon imports
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -30,7 +30,7 @@ const Navbar = () => {
       background: "rgba(255, 255, 255, 0)",
       backdropFilter: "none",
       boxShadow: "none",
-      borderBottom: "1px solid rgba(229, 231, 235, 0)", // Transparent border
+      borderBottom: "1px solid rgba(229, 231, 235, 0)",
     },
     solid: {
       background: "rgba(255, 255, 255, 0.98)",
@@ -39,6 +39,12 @@ const Navbar = () => {
       borderBottom: "1px solid rgba(229, 231, 235, 1)",
     },
   }
+
+  const menuItems = [
+    { to: "/", label: "Inicio", icon: <Home className="w-5 h-5" /> },
+    { to: "/products", label: "Productos", icon: <Store className="w-5 h-5" /> },
+    { to: "/contact", label: "Contacto", icon: <Phone className="w-5 h-5" /> },
+  ]
 
   return (
     <motion.nav
@@ -87,79 +93,94 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-3 rounded-xl bg-gradient-to-r from-butcher-50 to-butcher-100 hover:from-butcher-100 hover:to-butcher-200 transition-all duration-300 shadow-md"
-            aria-label="Toggle menu"
-          >
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={isOpen ? "close" : "menu"}
-                initial={{ opacity: 0, rotate: -90 }}
-                animate={{ opacity: 1, rotate: 0 }}
-                exit={{ opacity: 0, rotate: 90 }}
-                transition={{ duration: 0.2 }}
-              >
-                {isOpen ? 
-                  <X className="w-7 h-7 text-butcher-600" /> : 
-                  <Menu className="w-7 h-7 text-butcher-600" />
-                }
-              </motion.div>
+          <div className="md:hidden relative">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setIsOpen(!isOpen)}
+              className="w-12 h-12 flex items-center justify-center rounded-full bg-white shadow-lg"
+              aria-label="Toggle menu"
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={isOpen ? "close" : "menu"}
+                  initial={{ opacity: 0, rotate: -90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: 90 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {isOpen ? 
+                    <X className="w-6 h-6 text-gray-900" /> : 
+                    <Menu className="w-6 h-6 text-gray-900" />
+                  }
+                </motion.div>
+              </AnimatePresence>
+            </motion.button>
+
+            {/* Mobile Menu - Now attached to the button */}
+            <AnimatePresence>
+              {isOpen && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                  transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
+                  className="absolute right-0 top-14 md:hidden"
+                >
+                  <motion.div 
+                    className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 w-48"
+                    initial="closed"
+                    animate="open"
+                    variants={{
+                      open: {
+                        clipPath: "inset(0% 0% 0% 0% round 1rem)",
+                        transition: {
+                          type: "spring",
+                          bounce: 0,
+                          duration: 0.7,
+                          delayChildren: 0.3,
+                          staggerChildren: 0.05
+                        }
+                      },
+                      closed: {
+                        clipPath: "inset(10% 50% 90% 50% round 1rem)",
+                        transition: {
+                          type: "spring",
+                          bounce: 0,
+                          duration: 0.3
+                        }
+                      }
+                    }}
+                  >
+                    <div className="py-2">
+                      {menuItems.map(({ to, label, icon }) => (
+                        <motion.div
+                          key={to}
+                          variants={{
+                            open: { opacity: 1, y: 0 },
+                            closed: { opacity: 0, y: 20 }
+                          }}
+                        >
+                          <MobileNavLink
+                            to={to}
+                            isActive={location.pathname === to}
+                            onClick={() => setIsOpen(false)}
+                          >
+                            <div className="flex items-center gap-3">
+                              {icon}
+                              <span>{label}</span>
+                            </div>
+                          </MobileNavLink>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+                </motion.div>
+              )}
             </AnimatePresence>
-          </motion.button>
+          </div>
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            className="md:hidden bg-white border-t border-gray-200"
-          >
-            <motion.div 
-              className="px-4 py-6 space-y-3"
-              initial="closed"
-              animate="open"
-              variants={{
-                open: {
-                  transition: { staggerChildren: 0.1, delayChildren: 0.1 }
-                },
-                closed: {
-                  transition: { staggerChildren: 0.05, staggerDirection: -1 }
-                }
-              }}
-            >
-              {[
-                { to: "/", label: "Inicio" },
-                { to: "/products", label: "Productos" },
-                { to: "/contact", label: "Contacto" },
-              ].map(({ to, label }) => (
-                <motion.div
-                  key={to}
-                  variants={{
-                    open: { y: 0, opacity: 1 },
-                    closed: { y: 20, opacity: 0 }
-                  }}
-                >
-                  <MobileNavLink
-                    to={to}
-                    isActive={location.pathname === to}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {label}
-                  </MobileNavLink>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </motion.nav>
   )
 }
@@ -201,9 +222,9 @@ const MobileNavLink = ({ to, isActive, onClick, children }) => (
   <Link
     to={to}
     onClick={onClick}
-    className={`block w-full px-6 py-4 text-base font-medium rounded-xl transition-all duration-300 ${
+    className={`block w-full px-4 py-3 text-sm font-medium transition-all duration-300 ${
       isActive 
-        ? "bg-gradient-to-r from-butcher-50 to-butcher-100 text-butcher-600 shadow-md" 
+        ? "bg-gradient-to-r from-butcher-50 to-butcher-100 text-butcher-600" 
         : "text-gray-700 hover:bg-butcher-50 hover:text-butcher-600"
     }`}
   >
