@@ -257,7 +257,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
       <BanksSection />
       <Footer />
     </div>
