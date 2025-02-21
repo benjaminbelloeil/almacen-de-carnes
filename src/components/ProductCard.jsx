@@ -38,7 +38,7 @@ const ProductCard = ({ title, price, description, image, category }) => {
         <p className="text-gray-600 mb-4 line-clamp-2">{description}</p>
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm text-gray-500">Price per kg</p>
+            <p className="text-sm text-gray-500">Precio por kg</p>
             <p className="text-2xl font-semibold text-butcher-600">${price}</p>
           </div>
           <motion.button
@@ -47,7 +47,7 @@ const ProductCard = ({ title, price, description, image, category }) => {
             className="px-4 py-2 bg-butcher-600 text-white rounded-full inline-flex items-center gap-2 hover:bg-butcher-700 transition-colors"
           >
             <ShoppingCart className="w-5 h-5" />
-            Add to Cart
+            Añadir al carrito
           </motion.button>
         </div>
       </div>
@@ -56,4 +56,3 @@ const ProductCard = ({ title, price, description, image, category }) => {
 }
 
 export default ProductCard
-

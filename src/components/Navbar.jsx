@@ -21,14 +21,14 @@ const Navbar = () => {
 
   const navbarVariants = {
     top: {
-      background: "rgba(255, 255, 255, 0)",
-      backdropFilter: "blur(0px)",
-      boxShadow: "none",
+      background: "rgba(255, 255, 255, 0.95)",
+      backdropFilter: "blur(8px)",
+      boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
     },
     scrolled: {
-      background: "rgba(255, 255, 255, 0.85)",
+      background: "rgba(255, 255, 255, 0.98)",
       backdropFilter: "blur(12px)",
-      boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+      boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
     },
   }
 
@@ -38,7 +38,7 @@ const Navbar = () => {
       animate={isScrolled ? "scrolled" : "top"}
       variants={navbarVariants}
       transition={{ duration: 0.4 }}
-      className="fixed w-full z-50 border-b border-gray-200/20"
+      className="fixed w-full z-50 border-b border-gray-200"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
@@ -49,20 +49,20 @@ const Navbar = () => {
               transition={{ type: "spring", stiffness: 300 }}
               src="./Logo.jpg"
               alt="Almacén de Carnes"
-              className="h-12 w-auto rounded-xl duration-300"
+              className="h-14 w-auto rounded-xl transition-all duration-300"
             />
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center space-x-2">
             <NavLink to="/" isActive={location.pathname === "/"}>
-              Home
+              Inicio
             </NavLink>
             <NavLink to="/products" isActive={location.pathname === "/products"}>
-              Products
+              Productos
             </NavLink>
             <NavLink to="/contact" isActive={location.pathname === "/contact"}>
-              Contact
+              Contacto
             </NavLink>
           </div>
 
@@ -71,7 +71,7 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-xl bg-gradient-to-r from-butcher-50 to-butcher-100 hover:from-butcher-100 hover:to-butcher-200 transition-all duration-300"
+            className="md:hidden p-3 rounded-xl bg-gradient-to-r from-butcher-50 to-butcher-100 hover:from-butcher-100 hover:to-butcher-200 transition-all duration-300 shadow-md"
             aria-label="Toggle menu"
           >
             <AnimatePresence mode="wait">
@@ -83,8 +83,8 @@ const Navbar = () => {
                 transition={{ duration: 0.2 }}
               >
                 {isOpen ? 
-                  <X className="w-6 h-6 text-butcher-600" /> : 
-                  <Menu className="w-6 h-6 text-butcher-600" />
+                  <X className="w-7 h-7 text-butcher-600" /> : 
+                  <Menu className="w-7 h-7 text-butcher-600" />
                 }
               </motion.div>
             </AnimatePresence>
@@ -100,10 +100,10 @@ const Navbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            className="md:hidden bg-white/90 backdrop-blur-xl border-t border-gray-200/20"
+            className="md:hidden bg-white border-t border-gray-200"
           >
             <motion.div 
-              className="px-4 py-4 space-y-2"
+              className="px-4 py-6 space-y-3"
               initial="closed"
               animate="open"
               variants={{
@@ -116,9 +116,9 @@ const Navbar = () => {
               }}
             >
               {[
-                { to: "/", label: "Home" },
-                { to: "/products", label: "Products" },
-                { to: "/contact", label: "Contact" },
+                { to: "/", label: "Inicio" },
+                { to: "/products", label: "Productos" },
+                { to: "/contact", label: "Contacto" },
               ].map(({ to, label }) => (
                 <motion.div
                   key={to}
@@ -147,23 +147,23 @@ const Navbar = () => {
 const NavLink = ({ to, isActive, children }) => (
   <Link
     to={to}
-    className="relative group px-4 py-2 rounded-xl"
+    className="relative group px-6 py-3 rounded-xl"
   >
-    <span className={`text-sm font-medium transition-all duration-300 ${
+    <span className={`text-base font-medium transition-all duration-300 ${
       isActive 
         ? "text-butcher-600" 
-        : "text-gray-600 group-hover:text-butcher-600"
+        : "text-gray-700 group-hover:text-butcher-600"
     }`}>
       {children}
     </span>
     <motion.div
-      className="absolute bottom-0 left-0 right-0 h-full rounded-xl bg-butcher-50"
+      className="absolute bottom-0 left-0 right-0 h-1 bg-butcher-600 rounded-full"
       initial={false}
       animate={{
         opacity: isActive ? 1 : 0,
-        scale: isActive ? 1 : 0.95
+        width: isActive ? '100%' : '0%'
       }}
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 0.3 }}
     />
   </Link>
 )
@@ -172,10 +172,10 @@ const MobileNavLink = ({ to, isActive, onClick, children }) => (
   <Link
     to={to}
     onClick={onClick}
-    className={`block w-full px-4 py-3 text-sm font-medium rounded-xl transition-all duration-300 ${
+    className={`block w-full px-6 py-4 text-base font-medium rounded-xl transition-all duration-300 ${
       isActive 
-        ? "bg-gradient-to-r from-butcher-50 to-butcher-100 text-butcher-600 shadow-sm" 
-        : "text-gray-600 hover:bg-butcher-50 hover:text-butcher-600"
+        ? "bg-gradient-to-r from-butcher-50 to-butcher-100 text-butcher-600 shadow-md" 
+        : "text-gray-700 hover:bg-butcher-50 hover:text-butcher-600"
     }`}
   >
     {children}

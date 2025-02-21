@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
-import Product from './pages/Products'
+import Products from './pages/Products'
 import Contact from './pages/Contact'
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <Product />
+                <Products />
               </motion.div>
             } />
             <Route path="/contact" element={

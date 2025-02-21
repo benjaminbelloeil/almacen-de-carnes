@@ -66,9 +66,14 @@ export const theme = {
           serif: ["Playfair Display", "serif"],
           sans: ["Inter", "sans-serif"],
         },
+        aspectRatio: {
+          'w-16': 16,
+          'h-9': 9,
+        },
       },
     }
 }
 export const plugins = [
-    import("tailwindcss-animate")
+    import("tailwindcss-animate"),
+    import("tailwindcss/aspect-ratio")
 ];

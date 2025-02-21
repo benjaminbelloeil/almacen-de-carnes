@@ -5,36 +5,67 @@ import { motion } from "framer-motion"
 const banks = [
   {
     name: "Banco Nación",
-    logo: "https://www.bancogalicia.com/content/dam/public-site/logos/logo-galicia.svg",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Logo_Banco_de_la_Nacion_Argentina.svg/1000px-Logo_Banco_de_la_Nacion_Argentina.svg.png",
     bgColor: "bg-blue-50",
   },
   {
     name: "Banco Provincia",
-    logo: "https://www.santander.com.ar/banco/wcm/connect/public/sites/logos/santander-logo.svg",
+    logo: "https://www.bancoprovincia.com.ar/CDN/Get/logo_2021_S",
     bgColor: "bg-green-50",
   },
   {
     name: "BBVA",
-    logo: "https://www.bbva.com/wp-content/uploads/2019/03/bbva-logo-1024x576.jpg",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/BBVA_Bancomer_logo.svg/1558px-BBVA_Bancomer_logo.svg.png",
     bgColor: "bg-blue-50",
   },
   {
     name: "Banco Macro",
-    logo: "https://www.macro.com.ar/images/logo-banco-macro.svg",
-    bgColor: "bg-yellow-50",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/1/1e/Logo_Macro.png",
+    bgColor: "",
   },
   {
     name: "Banco Santander",
-    logo: "https://www.santander.com.ar/banco/wcm/connect/public/sites/logos/santander-logo.svg",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Banco_Santander_Logotipo.svg/476px-Banco_Santander_Logotipo.svg.png",
     bgColor: "bg-red-50",
   },
   {
     name: "HSBC",
-    logo: "https://www.hsbc.com/-/files/hsbc/news-and-insight/2018/november/181101-hsbc-logo-desktop-thumbnail.jpg",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/HSBC_logo_%282018%29.svg/1024px-HSBC_logo_%282018%29.svg.png",
     bgColor: "bg-red-50",
   },
-  // ... Add more banks with their respective logos and background colors
+  {
+    name: "Banco Galicia",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Logo_Banco_Galicia.svg/1100px-Logo_Banco_Galicia.svg.png",
+    bgColor: "bg-blue-50",
+  },
+  {
+    name: "Banco Ciudad",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Logo_Banco_Ciudad.svg/440px-Logo_Banco_Ciudad.svg.png",
+    bgColor: "bg-blue-50",
+  },
+  {
+    name: "Credicoop",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Logo_Banco_Credicoop.svg/800px-Logo_Banco_Credicoop.svg.png",
+    bgColor: "bg-green-50",
+  },
+  {
+    name: "Supervielle",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Logo_Banco_Supervielle.svg/1000px-Logo_Banco_Supervielle.svg.png",
+    bgColor: "bg-red-50",
+  },
+  {
+    name: "Citibank",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Citibank.svg/500px-Citibank.svg.png",
+    bgColor: "bg-blue-50",
+  },
+  {
+    name: "Banco Hipotecario",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Logo_Banco_Hipotecario.svg/1000px-Logo_Banco_Hipotecario.svg.png",
+    bgColor: "bg-blue-50",
+  },
 ]
+
+
 
 const BanksSection = () => {
   return (
@@ -46,8 +77,8 @@ const BanksSection = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-serif mb-4">Accepted Payment Methods</h2>
-          <p className="text-gray-600">We work with all major Argentine banks</p>
+          <h2 className="text-3xl md:text-4xl font-serif mb-4">Métodos de Pago Aceptados</h2>
+          <p className="text-gray-600">Trabajamos con todos los principales bancos argentinos</p>
         </motion.div>
 
         <motion.div
@@ -81,4 +112,3 @@ const BanksSection = () => {
 }
 
 export default BanksSection
-

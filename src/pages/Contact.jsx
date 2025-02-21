@@ -2,10 +2,13 @@
 
 import { motion } from "framer-motion"
 import { MapPin, Phone, Mail, Clock, Send, Loader2 } from "lucide-react"
-import { useState } from "react"
+import { FaWhatsapp, FaInstagram, FaFacebook } from "react-icons/fa"
+import { useState, useEffect } from "react"
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [formHeight, setFormHeight] = useState(0)
+  const [contactInfoHeight, setContactInfoHeight] = useState(0)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -15,12 +18,29 @@ const Contact = () => {
     setIsSubmitting(false)
   }
 
+  useEffect(() => {
+    const calculateHeights = () => {
+      const contactInfoDiv = document.querySelector(".contact-info")
+      const contactFormDiv = document.querySelector(".contact-form")
+
+      if (contactInfoDiv && contactFormDiv) {
+        setContactInfoHeight(contactInfoDiv.offsetHeight)
+        setFormHeight(contactFormDiv.offsetHeight)
+      }
+    }
+
+    calculateHeights()
+    window.addEventListener("resize", calculateHeights)
+
+    return () => window.removeEventListener("resize", calculateHeights)
+  }, [])
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen pt-20 pb-16"
+      className="min-h-screen pt-32 pb-16"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
@@ -29,7 +49,7 @@ const Contact = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-5xl font-serif mb-4"
           >
-            Get in Touch
+            Contáctanos
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -37,8 +57,8 @@ const Contact = () => {
             transition={{ delay: 0.1 }}
             className="text-gray-600 max-w-2xl mx-auto"
           >
-            Have questions about our products or want to place a special order? Were here to help you get the finest
-            cuts for your table.
+            ¿Tiene preguntas sobre nuestros productos o desea realizar un pedido especial? Estamos aquí para ayudarle a
+            obtener los mejores cortes para su mesa.
           </motion.p>
         </div>
 
@@ -48,16 +68,17 @@ const Contact = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="space-y-8 bg-white p-8 rounded-2xl shadow-lg"
+            className="contact-info space-y-8 bg-white p-8 rounded-2xl shadow-lg"
+            style={{ minHeight: `${Math.max(formHeight, 300)}px` }}
           >
             <div className="flex items-start gap-4">
               <div className="p-3 bg-butcher-50 rounded-lg">
                 <MapPin className="w-6 h-6 text-butcher-600" />
               </div>
               <div>
-                <h3 className="font-semibold text-lg mb-1">Location</h3>
+                <h3 className="font-semibold text-lg mb-1">Ubicación</h3>
                 <p className="text-gray-600">
-                  123 San Martín Street
+                  123 Calle San Martín
                   <br />
                   San Nicolás, Argentina
                 </p>
@@ -69,7 +90,7 @@ const Contact = () => {
                 <Phone className="w-6 h-6 text-butcher-600" />
               </div>
               <div>
-                <h3 className="font-semibold text-lg mb-1">Phone</h3>
+                <h3 className="font-semibold text-lg mb-1">Teléfono</h3>
                 <p className="text-gray-600">+54 336 442-1234</p>
               </div>
             </div>
@@ -79,7 +100,7 @@ const Contact = () => {
                 <Mail className="w-6 h-6 text-butcher-600" />
               </div>
               <div>
-                <h3 className="font-semibold text-lg mb-1">Email</h3>
+                <h3 className="font-semibold text-lg mb-1">Correo Electrónico</h3>
                 <p className="text-gray-600">info@almacendecarnes.com</p>
               </div>
             </div>
@@ -89,14 +110,56 @@ const Contact = () => {
                 <Clock className="w-6 h-6 text-butcher-600" />
               </div>
               <div>
-                <h3 className="font-semibold text-lg mb-1">Hours</h3>
+                <h3 className="font-semibold text-lg mb-1">Horario</h3>
                 <p className="text-gray-600">
-                  Monday - Friday: 8:00 AM - 8:00 PM
+                  Lunes - Viernes: 8:00 AM - 8:00 PM
                   <br />
-                  Saturday: 9:00 AM - 6:00 PM
+                  Sábado: 9:00 AM - 6:00 PM
                   <br />
-                  Sunday: Closed
+                  Domingo: Cerrado
                 </p>
+              </div>
+            </div>
+
+            {/* Social Media Section */}
+            <div className="pt-6 border-t border-gray-200">
+              <h3 className="font-semibold text-lg mb-4">Conéctate con Nosotros</h3>
+              <div className="flex gap-4">
+                <a
+                  href="https://wa.me/543364421234"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-gray-600 hover:text-green-600 transition-colors"
+                >
+                  <div className="p-3 bg-green-50 rounded-lg">
+                    <FaWhatsapp className="w-6 h-6 text-green-600" />
+                  </div>
+                  <span>WhatsApp</span>
+                </a>
+
+                <a
+                  href="https://instagram.com/almacendecarnes"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-gray-600 hover:text-pink-600 transition-colors"
+                >
+                  <div className="p-3 bg-pink-50 rounded-lg">
+                    <FaInstagram className="w-6 h-6 text-pink-600" />
+                  </div>
+                  <span>Instagram</span>
+                </a>
+
+                <a
+                  href="https://facebook.com/almacendecarnes"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
+                >
+                  <div className="p-3 bg-blue-50 rounded-lg">
+                    <FaFacebook className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <span>Facebook</span>
+                </a>
               </div>
             </div>
           </motion.div>
@@ -107,11 +170,12 @@ const Contact = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3 }}
             onSubmit={handleSubmit}
-            className="space-y-6 bg-white p-8 rounded-2xl shadow-lg"
+            className="contact-form space-y-6 bg-white p-8 rounded-2xl shadow-lg"
+            style={{ minHeight: `${Math.max(contactInfoHeight, 300)}px` }}
           >
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                Name
+                Nombre
               </label>
               <input
                 type="text"
@@ -123,7 +187,7 @@ const Contact = () => {
 
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                Email
+                Correo Electrónico
               </label>
               <input
                 type="email"
@@ -135,7 +199,7 @@ const Contact = () => {
 
             <div>
               <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
-                Subject
+                Asunto
               </label>
               <input
                 type="text"
@@ -147,13 +211,14 @@ const Contact = () => {
 
             <div>
               <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                Message
+                Mensaje
               </label>
               <textarea
                 id="message"
-                rows={4}
+                rows={6} // Increased rows for a larger message box
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-butcher-500 focus:border-transparent transition-shadow"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-butcher-500 focus:border-transparent transition-shadow resize-none" // resize-none to prevent manual resizing
+                style={{ minHeight: "120px" }} // Minimum height for the textarea
               />
             </div>
 
@@ -167,12 +232,12 @@ const Contact = () => {
               {isSubmitting ? (
                 <>
                   <Loader2 className="w-5 h-5 animate-spin" />
-                  <span>Sending...</span>
+                  <span>Enviando...</span>
                 </>
               ) : (
                 <>
                   <Send className="w-5 h-5" />
-                  <span>Send Message</span>
+                  <span>Enviar Mensaje</span>
                 </>
               )}
             </motion.button>
@@ -194,6 +259,8 @@ const Contact = () => {
               style={{ border: 0 }}
               allowFullScreen=""
               loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              aria-label="Location map"
             />
           </div>
         </motion.div>
@@ -203,4 +270,3 @@ const Contact = () => {
 }
 
 export default Contact
-
