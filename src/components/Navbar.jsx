@@ -14,7 +14,6 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Check if we're past the hero section (assuming hero height is 100vh)
       setIsScrolled(window.scrollY > window.innerHeight - 80)
     }
 
@@ -31,7 +30,7 @@ const Navbar = () => {
       background: "rgba(255, 255, 255, 0)",
       backdropFilter: "none",
       boxShadow: "none",
-      borderBottom: "none",
+      borderBottom: "1px solid rgba(229, 231, 235, 0)", // Transparent border
     },
     solid: {
       background: "rgba(255, 255, 255, 0.98)",
@@ -170,25 +169,28 @@ const NavLink = ({ to, isActive, isTransparent, children }) => (
     to={to}
     className="relative group px-6 py-3 rounded-xl"
   >
-    <span className={`text-base font-medium transition-all duration-300 ${
-      isActive 
-        ? isTransparent 
-          ? "text-butcher-600" 
-          : "text-butcher-600"
-        : isTransparent
-          ? "text-white group-hover:text-butcher-400"
-          : "text-gray-700 group-hover:text-butcher-600"
-    }`}>
+    <span 
+      className={`text-base font-medium transition-colors duration-300 ${
+        isActive
+          ? isTransparent 
+            ? "text-white" 
+            : "text-butcher-600"
+          : isTransparent
+            ? "text-white/90 group-hover:text-white"
+            : "text-gray-700 group-hover:text-butcher-600"
+      }`}
+      style={{ transition: "color 0.3s ease, opacity 0.3s ease" }}
+    >
       {children}
     </span>
     <motion.div
-      className={`absolute bottom-0 left-0 right-0 h-1 rounded-full ${
-        isTransparent ? "bg-butcher-400" : "bg-butcher-600"
+      className={`absolute bottom-0 left-0 right-0 h-1 rounded-full transition-colors duration-300 ${
+        isTransparent ? "bg-white" : "bg-butcher-600"
       }`}
       initial={false}
       animate={{
         opacity: isActive ? 1 : 0,
-        width: isActive ? '100%' : '0%'
+        width: isActive ? "100%" : "0%",
       }}
       transition={{ duration: 0.3 }}
     />

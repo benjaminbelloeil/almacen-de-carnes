@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { Link } from "react-router-dom"
@@ -7,9 +8,27 @@ import BanksSection from "../components/BanksSection"
 import About from "./About"
 import Footer from "./Footer"
 
+
+
+
+
 const Home = () => {
+
+  useEffect(() => {
+    document.body.classList.add("home")
+    return () => document.body.classList.remove("home")
+  }, [])
+  
   return (
-    <div className="min-h-screen bg-white">
+    // Wrap everything in a container with safe area insets and black background
+    <div
+      className="min-h-screen relative overflow-hidden"
+      style={{
+        paddingTop: "env(safe-area-inset-top)",
+        paddingBottom: "env(safe-area-inset-bottom)",
+        backgroundColor: "black" // Matches the hero's black overlay
+      }}
+    >
       {/* Hero Section */}
       <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <motion.div

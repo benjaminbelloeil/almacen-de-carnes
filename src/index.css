@@ -1,7 +1,13 @@
 @import "tailwindcss";
 
+@import "tailwindcss";
+
 body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
-  background-color: #ffffff;
   color: #333333;
+}
+
+/* Only black for the "home" class */
+body.home {
+  background-color: #000000;
 }
