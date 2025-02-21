@@ -10,72 +10,84 @@ import Footer from "./Footer"
 const Home = () => {
   return (
     <div className="min-h-screen bg-white">
-      <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white to-gray-50">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1551355738-1875c6f6c7f0?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-10" />
-        </div>
+      {/* Hero Section */}
+      <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <motion.div
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.5 }}
+          className="absolute inset-0"
+        >
+          <div
+            className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=1920&q=80')]
+            bg-cover bg-fixed bg-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/80" />
+        </motion.div>
 
-        <div className="container mx-auto px-4 py-20 flex flex-col lg:flex-row items-center gap-12">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="flex-1 text-center lg:text-left"
-          >
-            <img
-              src="./Logo.jpg"
-              alt="Almacén de Carnes"
-              className="h-32 mb-8 mx-auto lg:mx-0"
-            />
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif mb-6 text-gray-900 leading-tight">
-              Carne Argentina de Primera
-              <span className="block text-butcher-600">Calidad</span>
-            </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0">
-              Descubri los mejores cortes de San Nicolás, donde la tradición se une a la excelencia en cada pieza
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-              <Link to="/products">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="bg-butcher-600 text-gray-800 px-8 py-3 rounded-full text-lg hover:bg-butcher-700 transition-colors inline-flex items-center gap-2 group shadow-lg shadow-butcher-600/20"
-                >
-                  Ver Nuestra Selección
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </motion.button>
-              </Link>
-              <Link to="/contact">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="bg-white text-butcher-600 border-2 border-butcher-600 px-8 py-3 rounded-full text-lg hover:bg-butcher-50 transition-colors"
-                >
-                  Contáctanos
-                </motion.button>
-              </Link>
-            </div>
-          </motion.div>
+        <div className="container mx-auto px-4 py-20 relative">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="text-center"
+            >
+              <h1 className="text-5xl md:text-7xl font-serif mb-2 text-white leading-tight">
+                Carne Argentina de Primera
+                <span className="block mt-2 text-butcher-400">Calidad</span>
+              </h1>
+              <motion.div
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ delay: 0.8, duration: 0.8 }}
+                className="mx-auto mt-2 h-0.5 bg-butcher-400 w-1/4"
+              />
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto mt-8"
+              >
+                Descubri los mejores cortes de San Nicolás, donde la tradición se une 
+                a la excelencia en cada pieza
+              </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="flex-1 relative"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=800&q=80"
-              alt="Selección de carne premium"
-              className="rounded-2xl shadow-2xl w-full"
-            />
-            <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-xl">
-              <div className="text-butcher-600 font-serif text-2xl">Más de 10</div>
-              <div className="text-gray-600">Años de Excelencia</div>
-            </div>
-          </motion.div>
+              <div className="flex flex-wrap gap-6 justify-center">
+                <Link to="/products">
+                  <motion.button
+                    whileHover={{ scale: 1.05, backgroundColor: "#fff" }}
+                    whileTap={{ scale: 0.98 }}
+                    className="bg-butcher-400 text-white hover:text-black px-10 py-4 rounded-full text-lg font-medium 
+                    shadow-lg shadow-butcher-400/30 transition-all duration-300 inline-flex items-center gap-2"
+                  >
+                    Ver Nuestra Selección
+                    <motion.div
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 400 }}
+                    >
+                      <ArrowRight className="w-5 h-5" />
+                    </motion.div>
+                  </motion.button>
+                </Link>
+                <Link to="/contact">
+                  <motion.button
+                    whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
+                    whileTap={{ scale: 0.98 }}
+                    className="border-2 border-white text-white px-10 py-4 rounded-full text-lg font-medium 
+                    hover:border-butcher-400 transition-all duration-300"
+                  >
+                    Contáctanos
+                  </motion.button>
+                </Link>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
+
       <About />
+
       {/* Featured Products Section */}
       <section className="py-32 bg-gradient-to-b from-white via-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -88,7 +100,7 @@ const Home = () => {
             >
               Nuestra Selección
             </motion.span>
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -108,7 +120,7 @@ const Home = () => {
             </motion.p>
           </div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -122,7 +134,7 @@ const Home = () => {
               className="group relative overflow-hidden rounded-3xl shadow-xl"
             >
               <div className="aspect-w-4 aspect-h-5">
-                <img 
+                <img
                   src="https://images.unsplash.com/photo-1615937722923-67f6deaf2cc9?auto=format&fit=crop&w=800&q=80"
                   alt="Costillar Premium"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -144,7 +156,7 @@ const Home = () => {
               className="group relative overflow-hidden rounded-3xl shadow-xl"
             >
               <div className="aspect-w-4 aspect-h-5">
-                <img 
+                <img
                   src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
                   alt="Bife de Chorizo"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -166,7 +178,7 @@ const Home = () => {
               className="group relative overflow-hidden rounded-3xl shadow-xl"
             >
               <div className="aspect-w-4 aspect-h-5">
-                <img 
+                <img
                   src="https://images.unsplash.com/photo-1603048297172-c92544798d5a?auto=format&fit=crop&w=800&q=80"
                   alt="Lomo Fino"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -182,7 +194,7 @@ const Home = () => {
             </motion.div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -202,10 +214,11 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
+
       <BanksSection />
       <Footer />
     </div>
   )
 }
 
-export default Home
+export default Home;
