@@ -70,7 +70,7 @@ const products = [
   },
 ]
 
-const categories = ["Todos", "Cortes Premium", "Favoritos a la Parrilla", "Ofertas Especiales"]
+const categories = ["Todos", "Cortes Premium", "A la Parrilla", "Ofertas Especiales"]
 
 const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState("Todos")
