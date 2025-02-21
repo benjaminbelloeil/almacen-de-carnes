@@ -93,12 +93,12 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Left Column - Information */}
-            <div className="lg:pr-12 lg:sticky lg:top-8 self-start">
+            <div className="lg:pr-12 flex flex-col justify-between">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="space-y-8"
+                className="space-y-4"
               >
                 <span className="text-butcher-600 font-medium text-lg">Nuestra Selección</span>
                 <h2 className="text-4xl lg:text-5xl font-serif text-gray-900 leading-tight">
@@ -109,9 +109,9 @@ const Home = () => {
                   Seleccionamos cuidadosamente las mejores piezas para ofrecerte una experiencia 
                   gastronómica única.
                 </p>
-                <div className="space-y-6 text-gray-600">
+                <div className="space-y-4 text-gray-600">
                   <h3 className="text-2xl font-serif text-gray-900">Nuestros Cortes Incluyen:</h3>
-                  <ul className="space-y-4">
+                  <ul className="space-y-2">
                     <li className="flex items-start gap-4">
                       <span className="w-2 h-2 bg-butcher-600 rounded-full mt-2"/>
                       <span>
@@ -136,7 +136,7 @@ const Home = () => {
                   </ul>
                 </div>
 
-                <Link to="/products" className="inline-block mt-8">
+                <Link to="/products" className="inline-block mt-4">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -147,6 +147,27 @@ const Home = () => {
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </motion.button>
                 </Link>
+              </motion.div>
+
+              {/* "Sabías que" Card - Moved to left column */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6 }}
+                className="bg-butcher-50 rounded-3xl p-8 border border-butcher-100 shadow-xl mt-4"
+              >
+                <div className="text-center space-y-4">
+                  <h4 className="text-2xl font-serif text-butcher-800">
+                    ¿Sabías que?
+                  </h4>
+                  <p className="text-xl text-gray-600 leading-relaxed">
+                    Nuestros cortes son <span className="font-semibold text-butcher-800">100% frescos</span> y 
+                    seleccionados diariamente. Trabajamos directamente con productores locales de confianza 
+                    para garantizar la más alta calidad en cada pieza que ofrecemos. Además, nuestro equipo 
+                    de expertos carniceros cuenta con más de 30 años de experiencia en el oficio.
+                  </p>
+                </div>
               </motion.div>
             </div>
 
